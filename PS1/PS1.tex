@@ -38,6 +38,40 @@
 \section*{Question 2}
 \begin{enumerate}
     \item[a.] Divide the array into two subarrays: $s1 = A[0:\frac{n}{2}]$ and $s2 = A[\frac{n}{2} + 1:n]$. Recursively find $S_{ij}$ such that $S_{ij} = \sum_{r=i}^j A[r]$ is the maximum sum over all possible $i$ and $j$, $1 \leq i \leq j \leq n$ for both subarrays. Then linearly scan left and right from the midpoint to find the maximum subarray beginning in $s1$ and ending in $s2$. Finally, take the maximum of all three maximum sums. 
+    \begin{verbatim}
+        # Assume arrays start at index 1
+        function func(A, i, j):
+            if i == j
+                return A[i]
+            mid = (i + j)/2
+            leftSum = func(A, i, mid)
+            rightSum = func(A, mid+1, j)
+            crossSum = helper(A, i, j, mid)
+        
+            return max(leftSum, rightSum, crossSum)
+    \end{verbatim}
+    
+    \begin{verbatim}
+        function helper(A,start,end, mid):
+            leftSum = 0
+            rightSum = 0
+            totalSum  = 0
+        
+            for i = mid downto start
+                sum += A[i]
+                if sum > leftSum
+                    leftSum = sum
+            
+            sum = 0
+            for j = mid +1 to end
+                sum += A[j]
+                if sum > rightSum
+                    rightSum = sum
+            
+            return leftSum + rightSum
+    \end{verbatim}
+    
+    The recurrence relation is $T(n) = 2T(n/2) + n$. By the master theorm this is $O(nlogn)$
     \item[b.] 
 \end{enumerate}
 
