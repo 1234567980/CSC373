@@ -1,15 +1,15 @@
 \documentclass[12pt]{article}
-\usepackage{ dsfont }
+\usepackage{dsfont}
 \usepackage{amsmath}
 \usepackage[margin=2.5cm]{geometry}
-\usepackage{ amssymb }
+\usepackage{amssymb}
 \usepackage{mathtools}
+
 \DeclarePairedDelimiter\ceil{\lceil}{\rceil}
 \DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
 
 \usepackage{algorithm}
 \usepackage[noend]{algpseudocode}
-
 \usepackage{pgf}
 \usepackage{tikz}
 \usepackage{tikz-qtree}
@@ -22,7 +22,8 @@
 \maketitle
 \section*{Question 1}
 \begin{enumerate}
-    \item[a.] We have $n$ piles of $m$ papers. As merging two sorted piles can be done it time proportional to the size of the resulting pile, following the given algorithm the first merge will take $2m$ time, the second merge will take $3m$ time, etc.
+    \item[a.] We have $n$ piles of $m$ papers. As merging two sorted piles can be done it time proportional to the size of the resulting pile, following the given algorithm the first merge will take $2m$ time, the second merge will take $3m$ time, etc. 
+    The running time of this algorithm can be found:
     \begin{align*}
         &= 2m + 3m + 4m + ... + nm \\
         &= \sum_{k=2}^n km \\
