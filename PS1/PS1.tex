@@ -91,29 +91,29 @@ By the master theorem, where in this case: a = 2, b = 2, d = 1 meaning that a = 
             if i == j
                 return (A[i], A[i], A[i], A[i])
             mid = (i + j)/2
-            left = func(A, i, mid)
-            right = func(A, mid+1, j)
+            sums = helper(A, i, j, mid)
 
-            # Sum of all elements in the array
-            totalSum = left[0] + right[0]
-
-            # Max possible prefix sum
-            prefixSum = max(left[1], left[0] + right[1])
-
-            # Max possible suffix sum
-            suffixSum = max(right[2], left[1] + right[0])
-
-            # Max subarray sum
-            subSum = max(left[3], right[3], left[2] + right[1])
-        
-            return (totalSum, prefixMax, suffixMax, subSum)
+            return max(sums[0], sums[1], sums[2])
     \end{verbatim}
     
     \begin{verbatim}
-        function maxSum(A,i,j):
-            sums = func(A,i,j)
-            return max(sums[1], sums[2], sums[3])
-
+        function helper(A,start,end, mid):
+            leftSum = 0
+            rightSum = 0
+            totalSum  = 0
+        
+            for i = mid downto start
+                sum += A[i]
+                if sum > leftSum
+                    leftSum = sum
+            
+            sum = 0
+            for j = mid +1 to end
+                sum += A[j]
+                if sum > rightSum
+                    rightSum = sum
+            
+            return (leftSum, rightSum, leftSum + rightSum)
     \end{verbatim}
 
 \end{enumerate}
