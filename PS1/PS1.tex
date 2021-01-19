@@ -32,8 +32,16 @@
         &= m(\frac{(n+1)(n)}{2} - 1)
     \end{align*}
     This is $\mathcal{O}(mn^2)$.
-    \item[b.] If you have exactly two piles, merge them as in a. If you have more than two piles, divide into two sets of piles of equal size (we can do this because $n$ is an exact power of two). Then, recursively merge each set of piles until you obtain two piles $p1$ and $p2$. Then merge $p1$ and $p2$. The recurrence relation is $T(n) = 2T(n/2) + mn$. By the master theorem, this is $O(mn \log n)$.
-\end{enumerate}
+    \item[b.] If you have exactly two piles, merge them as in a. If you have more than two piles, divide into two sets of piles of equal size (we can do this because $n$ is an exact power of two). 
+    Then, recursively merge each set of piles until you obtain two piles $p1$ and $p2$. Then merge $p1$ and $p2$, and the run time of this process is proportional to the size of p1 + p2. The recurrence relation can be described by:
+    
+    \begin{equation}
+        T(mn) = \begin{cases}
+          0, & \text{n = 0, m $>=$ 0}.\\
+          2T(\frac{mn}{2}) + mn, & \text{n $>$ 0, m $>$ 0}.\\
+    \end{cases}
+    \end{equation}
+By the master theorem, where in this case: a = 2, b = 2, d = 1 meaning that a = b. Thus, the (worst-case) running time is $O(mn \log mn)$.\end{enumerate}
 \newpage
 \section*{Question 2}
 \begin{enumerate}
