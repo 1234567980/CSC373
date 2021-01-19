@@ -81,7 +81,41 @@ By the master theorem, where in this case: a = 2, b = 2, d = 1 meaning that a = 
     
     The recurrence relation is $T(n) = 2T(n/2) + n$. By the master theorm this is $O(nlogn)$
     
-    \item[b.] Divide the array into two subarrays and recursively solve as in a. However, instead of just returning the maximum subarray, when we call our function, it will also return the maximum prefix and maximum suffix of the array. For our combination, instead of linearly scanning over the array to find the maximum subarray beginning in $s1$ and ending in $s2$, we instead return the union of the maximum prefix of $s1$ and maximum suffix of $s2$. Then, take the maximum of all three maximum sums.
+    \item[b.] Divide the array into two subarrays and recursively solve as in a. However, instead of just returning the maximum subarray, when we call our function, it will also return the maximum prefix and maximum suffix of the array. For our combination, instead of linearly scanning over the array to find the maximum subarray beginning in $s1$ and ending in $s2$, we instead return the union of the maximum 
+    prefix of $s1$ and maximum suffix of $s2$. Then, take the maximum of all three maximum sums.\\
+    
+    Pseudocode:
+    \begin{verbatim}
+        # Assume arrays start at index 1
+        function func(A, i, j):
+            if i == j
+                return (A[i], A[i], A[i], A[i])
+            mid = (i + j)/2
+            left = func(A, i, mid)
+            right = func(A, mid+1, j)
+
+            # Sum of all elements in the array
+            totalSum = left[0] + right[0]
+
+            # Max possible prefix sum
+            prefixSum = max(left[1], left[0] + right[1])
+
+            # Max possible suffix sum
+            suffixSum = max(right[2], left[1] + right[0])
+
+            # Max subarray sum
+            subSum = max(left[3], right[3], left[2] + right[1])
+        
+            return (totalSum, prefixMax, suffixMax, subSum)
+    \end{verbatim}
+    
+    \begin{verbatim}
+        function maxSum(A,i,j):
+            sums = func(A,i,j)
+            return max(sums[1], sums[2], sums[3])
+
+    \end{verbatim}
+
 \end{enumerate}
 
 \end{document}
