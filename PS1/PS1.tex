@@ -37,8 +37,8 @@
     
     \begin{equation}
         T(mn) = \begin{cases}
-          0, & \text{n = 0, m $>=$ 0}.\\
-          2T(\frac{mn}{2}) + mn, & \text{n $>$ 0, m $>$ 0}.\\
+          0, & \text{n = 0 or m $=$ 0}.\\
+          2T(\frac{mn}{2}) + mn, & \text{n $>$ 0 and m $>$ 0}.\\
     \end{cases}
     \end{equation}
 By the master theorem, where in this case: a = 2, b = 2, d = 1 meaning that a = b. Thus, the (worst-case) running time is $O(mn \log mn)$.\end{enumerate}
