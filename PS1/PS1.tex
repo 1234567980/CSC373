@@ -73,7 +73,7 @@
     
     The recurrence relation is $T(n) = 2T(n/2) + n$. By the master theorm this is $O(nlogn)$
     
-    \item[b.] 
+    \item[b.] Divide the array into two subarrays and recursively solve as in a. However, instead of just returning the maximum subarray, when we call our function, it will also return the maximum prefix and maximum suffix of the array. For our combination, instead of linearly scanning over the array to find the maximum subarray beginning in $s1$ and ending in $s2$, we instead return the union of the maximum prefix of $s1$ and maximum suffix of $s2$. Then, take the maximum of all three maximum sums.
 \end{enumerate}
 
 \end{document}
