@@ -21,6 +21,7 @@
 \begin{document}
 \maketitle
 \section*{Question 1}
+This question was written and read by Luke, Naslin and Zhuoqian
 \begin{enumerate}
     \item[a.] We have $n$ piles of $m$ papers. As merging two sorted piles can be done it time proportional to the size of the resulting pile, following the given algorithm the first merge will take $2m$ time, the second merge will take $3m$ time, etc. 
     The running time of this algorithm can be found:
@@ -41,9 +42,10 @@
           2T(\frac{mn}{2}) + mn, & \text{n $>$ 0 and m $>$ 0}.\\
     \end{cases}
     \end{equation}
-By the master theorem, where in this case: a = 2, b = 2, d = 1 meaning that a = b. Thus, the (worst-case) running time is $O(mn \log mn)$.\end{enumerate}
+By the master theorem, where in this case: a = 2, b = 2, d = 1 meaning that a = b. Thus, the (worst-case) running time is $O(mn \log mn)$.\end{enumerate} 
 \newpage
 \section*{Question 2}
+This question was written and read by Luke, Naslin and Zhuoqian
 \begin{enumerate}
     \item[a.] Divide the array into two subarrays: $s1 = A[0:\frac{n}{2}]$ and $s2 = A[\frac{n}{2} + 1:n]$. Recursively find $S_{ij}$ such that $S_{ij} = \sum_{r=i}^j A[r]$ is the maximum sum over all possible $i$ and $j$, $1 \leq i \leq j \leq n$ for both subarrays. Then linearly scan left and right from the midpoint to find the maximum subarray beginning in $s1$ and ending in $s2$. Finally, take the maximum of all three maximum sums. 
     \begin{verbatim}
@@ -51,19 +53,20 @@ By the master theorem, where in this case: a = 2, b = 2, d = 1 meaning that a = 
         function func(A, i, j):
             if i == j
                 return A[i]
-            mid = (i + j)/2
-            leftSum = func(A, i, mid)
-            rightSum = func(A, mid+1, j)
-            crossSum = helper(A, i, j, mid)
+            else 
+                mid = floor((i + j)/2)
+                leftSum = func(A, i, mid)
+                rightSum = func(A, mid+1, j)
+                crossSum = helper(A, i, j, mid)
         
-            return max(leftSum, rightSum, crossSum)
+                return max(leftSum, rightSum, crossSum)
     \end{verbatim}
     
     \begin{verbatim}
         function helper(A,start,end, mid):
             leftSum = 0
             rightSum = 0
-            totalSum  = 0
+            sum  = 0
         
             for i = mid downto start
                 sum += A[i]
@@ -79,7 +82,7 @@ By the master theorem, where in this case: a = 2, b = 2, d = 1 meaning that a = 
             return leftSum + rightSum
     \end{verbatim}
     
-    The recurrence relation is $T(n) = 2T(n/2) + n$ for $n>0$. By the master theorm this is $O(nlogn)$
+    The recurrence relation is $T(n) = 2T(n/2) + cn$ where n is the size of the array and $n>0$. In this case a = 2, b = 2 and d = 1 meaning that a = 2 = $b^d$ = 2. By the master theorem this is $O(nlogn)$.
     \newpage
     \item[b.] Divide the array into two subarrays and recursively solve as in a. However, instead of just returning the maximum subarray, when we call our function, it will also return the maximum prefix and maximum suffix of the array. That is, the maximum prefix is $k$ such that the $\sum_{j=1}^k A_j$ is maximum; similarly the maximum suffix is $k$ such that the $\sum_{j=k}^n A_j$ is maximum. For our combine step, instead of linearly scanning over the array to find the maximum subarray beginning in $s1$ and ending in $s2$, we instead return the union of the maximum 
     suffix of $s1$ and maximum prefix of $s2$. Then, take the maximum of all three maximum sums.\\
