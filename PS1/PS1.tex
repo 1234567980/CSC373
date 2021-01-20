@@ -79,7 +79,7 @@ By the master theorem, where in this case: a = 2, b = 2, d = 1 meaning that a = 
             return leftSum + rightSum
     \end{verbatim}
     
-    The recurrence relation is $T(n) = 2T(n/2) + n$. By the master theorm this is $O(nlogn)$
+    The recurrence relation is $T(n) = 2T(n/2) + n$ for $n>0$. By the master theorm this is $O(nlogn)$
     
     \item[b.] Divide the array into two subarrays and recursively solve as in a. However, instead of just returning the maximum subarray, when we call our function, it will also return the maximum prefix and maximum suffix of the array. That is, the maximum prefix is $k$ such that the $\sum_{j=1}^k A_j$ is maximum; similarly the maximum suffix is $k$ such that the $\sum_{j=k}^n A_j$ is maximum. For our combine step, instead of linearly scanning over the array to find the maximum subarray beginning in $s1$ and ending in $s2$, we instead return the union of the maximum 
     suffix of $s1$ and maximum prefix of $s2$. Then, take the maximum of all three maximum sums.
