@@ -33,7 +33,7 @@
     \end{align*}
     This is $\mathcal{O}(mn^2)$.
     \item[b.] If you have exactly two piles, merge them as in a. If you have more than two piles, divide into two sets of piles of equal size (we can do this because $n$ is an exact power of two). 
-    Then, recursively merge each set of piles until you obtain two piles $p1$ and $p2$. Then merge $p1$ and $p2$, and the run time of this process is proportional to the size of p1 + p2. The recurrence relation can be described by:
+    Then, recursively merge each set of piles until you obtain two piles $p1$ and $p2$. Then merge $p1$ and $p2$, and the run time of this process is proportional to the size of $p1 + p2$. The recurrence relation can be described by:
     
     \begin{equation}
         T(mn) = \begin{cases}
@@ -81,13 +81,19 @@ By the master theorem, where in this case: a = 2, b = 2, d = 1 meaning that a = 
     
     The recurrence relation is $T(n) = 2T(n/2) + n$. By the master theorm this is $O(nlogn)$
     
-    \item[b.] Divide the array into two subarrays and recursively solve as in a. However, instead of just returning the maximum subarray, when we call our function, it will also return the maximum prefix and maximum suffix of the array. For our combination, instead of linearly scanning over the array to find the maximum subarray beginning in $s1$ and ending in $s2$, we instead return the union of the maximum 
-    prefix of $s1$ and maximum suffix of $s2$. Then, take the maximum of all three maximum sums.
-    \\  
-    Pseudocode:
-    \begin{verbatim}[commandchars=\\\{\}]
-        ### Helper function to find prefix sums and suffix sums
-        function helper(A, i, j):
+    \item[b.] Divide the array into two subarrays and recursively solve as in a. However, instead of just returning the maximum subarray, when we call our function, it will also return the maximum prefix and maximum suffix of the array. That is, the maximum prefix is $k$ such that the $\sum_{j=1}^k A_j$ is maximum; similarly the maximum suffix is $k$ such that the $\sum_{j=k}^n A_j$ is maximum. For our combine step, instead of linearly scanning over the array to find the maximum subarray beginning in $s1$ and ending in $s2$, we instead return the union of the maximum 
+    suffix of $s1$ and maximum prefix of $s2$. Then, take the maximum of all three maximum sums.
+
+    \begin{verbatim}
+        # This function returns six values: 
+        # totalSum sum of A from i to j, 
+        # prefixSum value of max of prefix, 
+        # suffixSum value of max suffix, 
+        # subSum value of optimal subsequence in A[i] to A[j], 
+        # prefixEnd index of last element of the maximum prefix, 
+        # suffixStart index of first element of the maximum suffix
+        
+        function possibleSums(A, i, j):
             if i == j
                 return (A[i], A[i], A[i], A[i], i, i)
             mid = floor((i + j)/2)
@@ -95,72 +101,32 @@ By the master theorem, where in this case: a = 2, b = 2, d = 1 meaning that a = 
             right = possibleSums(A, mid+1, j)
 
             # Sum of all elements in the array
-            totalSum = left[0] + right[0]
+            totalSum = left.totalSum + right.totalSum
 
             # Max possible prefix sum
-            prefixSum = max(left[1], left[0] + right[1])
+            prefixSum = max(left.prefixSum, left.totalSum + right.prefixSum)
 
             # Max possible suffix sum
-            suffixSum = max(right[2], left[2] + right[0])
+            suffixSum = max(right.suffixSum, left.suffixSum + right.totalSum)
 
             # Max subarray sum
-            subSum = max(left[3], right[3], left[2] + right[1]) 
+            subSum = max(left.subSum, right.subSum, 
+                         left.suffixSum + right.prefixSum) 
 
             ## Update left suffix and right prefix location
             # Default
             prefixEnd = left.prefixEnd
             suffixStart = right.suffixStart
 
-            if (prefixSum == left[0] + right[1]){
+            if (prefixSum == left.totalSum + right.prefixSum){
                 prefixEnd = right.prefixEnd
             }
-            if (suffixSum == left[2] + right[0]){
+            if (suffixSum == left.suffixSum + right.totalSum){
                 suffixStart = left.suffixStart
             }
 
-            ## Update index of subarray
-            # Default 
-            l = left.l
-            r = left.r
-
-            if (subSum == right[3]){
-                l = right.l
-                r = right.r
-            }
-            else if (subSum == left[2] + right[1]){
-                l = left.suffixStart
-                r = right.prefixEnd
-            }
-
-            return (totalSum, prefixSum, suffixSum, subSum, prefixEnd, suffixStart, l, r)
-    \end{verbatim}
-
-    \begin{verbatim}
-        ### Returns max sum and its indexes
-        function maxSum(A,i,j):
-            sums = func(A,i,j)
-
-            # Default
-            left = i
-            right = j
-
-            # Find max
-            maxSum = max(sums.totalSum, sums.prefixSum, sums.suffixSum, sums.subSum)
-
-            # Find i and j
-            if (maxSum == sums.prefixSum){
-                right = sums.prefixEnd
-            }
-            else if (maxSum == sums.suffixSum){
-                left = sums.suffixStart
-            }
-            else if(maxSum = sums.subSum){
-                left = sums.l
-                right = sums.r
-            }
-
-            return (max, left, right)
-
+            return (totalSum, prefixSum, suffixSum, subSum, prefixEnd, 
+                suffixStart)
     \end{verbatim}
 
 \end{enumerate}
