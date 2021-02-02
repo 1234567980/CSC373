@@ -21,6 +21,19 @@
 \begin{document}
 \maketitle
 \section*{Question 1}
+This algorithm is very similar to the Interval scheduling problem done in class except we have an circle of problems (similar to a clock). We can apply the same algorithm if there is only one job that intersects wuth the 12 am time slot. So we do this for each each one of these jobs.
+ 
+ The algorithm goes as follows:
+ \begin{enumerate}
+     \item For all intervals that contain the 12am slot put them into a set called S
+     \item Sort the remaining intervals in order of earliest finish time (EFT)
+     \item Create a new set A and select a job s from S and insert into the sorted intervals in step 2
+     \item for each interval i in sorted order, if it is compatible with A then add it to A. 
+     \item Repeat steps 3 and 4 for each job in S 
+     \item Now for each set we created, return the one with greatest length
+ \end{enumerate}
+
+The run time of this algorithm is O(n+ cnlogn + $cn^2$ + n) which is $O(n^2)$
 
 \section*{Question 2}
 \begin{enumerate}
