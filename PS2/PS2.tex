@@ -22,6 +22,8 @@
 \maketitle
 \section*{Question 1}
 
+\newpage
+
 \section*{Question 2}
 \begin{enumerate}
     \item[a.] Our goal is to find the easiest trip which is the trip with the minimum toughness. The toughness 
@@ -70,6 +72,10 @@
             return d(t)
     \end{verbatim}
     TODO:   Give, and briefly justify, the complexity of your modified algorithm
+    The first for loop would have a runtime of c*n, where c is a constant. The while loop would take at most
+    n iterations, while the first for loop within the while loop would take m runtime, where m <= n. The second
+    for loop in the while loop would take at most n iterations. Thus the worst case runtime of the modified
+    algorithm is $O(c + cn + m + n^2)$ and thus $O(n^2)$.
 
     \item[b.] In Dijkstra’s original algorithm, d(v) is a sum of the weights. It assumes that when a new 
     a new node, u, is added to R, for all nodes, v, in  V - R whose R-path contain u, 
@@ -82,5 +88,7 @@
     Thus, negative weights would not impact the outcome.\\
 \end{enumerate}
 
+\newpage
+\section*{Question 3}
 
 \end{document}
