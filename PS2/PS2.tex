@@ -21,6 +21,19 @@
 \begin{document}
 \maketitle
 \section*{Question 1}
+This algorithm is very similar to the Interval scheduling problem done in class except we have an circle of problems (similar to a clock). We can apply the same algorithm if there is only one job that intersects wuth the 12 am time slot. So we do this for each each one of these jobs.
+ 
+ The algorithm goes as follows:
+ \begin{enumerate}
+     \item For all intervals that contain the 12am slot put them into a set called S
+     \item Sort the remaining intervals in order of earliest finish time (EFT)
+     \item Create a new set A and select a job s from S and insert into the sorted intervals in step 2
+     \item for each interval i in sorted order, if it is compatible with A then add it to A. 
+     \item Repeat steps 3 and 4 for each job in S 
+     \item Now for each set we created, return the one with greatest length
+ \end{enumerate}
+
+The run time of this algorithm is O(n+ cnlogn + $cn^2$ + n) which is $O(n^2)$
 
 \newpage
 
@@ -86,6 +99,21 @@
 
     This assumption is not necessary since our modification takes the max weight of all the portages on the path.
     Thus, negative weights would not impact the outcome.\\
+\end{enumerate}
+\section*{Question 3} 
+\begin{enumerate}
+    \item[a.] Consider the actor heights of $900, 30, 15$, and the costume lengths of $50, 10, 5$. The optimal solution is matching $900 : 50$, $30 : 10$, and $15 : 5$ for a cost of $850 + 20 + 10 = 880$. However, Bombazzino's algorithm will match $15 : 10$, $30 : 50$, and $900 : 5$ for a cost of $5 + 20 + 895 = 920$. Thus, Bombazzino's algorithm is not optimal.
+    \item[b.] Let $S_g$ be the solution that our greedy algorithm returns, and let $S_o$ be the optimal solution. We will show that the cost of $S_g = S_o$, therefore $S_g$ is optimal.
+    \newline \,
+    \newline
+    To start, sort $S_g$ and $S_o$ by increasing actor height. Let $h_1$ to $h_k$ be the distinct heights $h_1 > h_2 > ... > h_k$ of the actors. Starting at $i = 1$, consider the actors of height $h_i$, and let $C_i$ be the set of costumes assigned to the actors of height $h_i$ in solution $S_g$. Let $D_i$ be the set of costumes assigned to the actors of height $h_i$ in $S_o$. If $C_i = D_i$ than the cost of the assignment to the actors of $h_i$ in $S_g$ is the same as the cost of the assignment to the actors of height $h_i$ in $S_o$ and this holds for $h_1$ up to $h_i$.
+    \newline \,
+    \newline
+    Say that $C_i \neq D_i$. Let $a_i$ be an actor of height $h_i$ in $S_g$, such that in $S_o$, $a_i$ has a costume $c_j$ that is not a member of the set of costumes $C_i$. Therefore, the length of $c_j$ is less than the length of any costume in $C_i$, and there must also exist an actor $a_j$ with height less than $h_i$ such that $a_j$ has been given some costume $c_i$ where $c_i$ is in $C_i$ in $S_o$.
+    \newline \,
+    \newline
+    Therefore, we have that the height of actor $a_i > a_j$, and the length of costume $c_i > c_j$. This is a contradiction, as then the optimal solution could be improved by swapping the costumes for $a_i$ and $a_j$ (in an optimal solution, there cannot be a pair of actors $a_i$ $a_j$ where $a_i$ is taller than $a_j$ and $a_i$ is assigned a costume that is shorter than $a_j$'s costume. Swapping the costumes for $a_i$ and $a_j$ will strictly improve the cost of the solution). We see that in the optimal solution $C_i$ must be equal to $D_i$ for all $i$, and therefore the cost is identical.
+
 \end{enumerate}
 
 \newpage
