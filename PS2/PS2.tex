@@ -78,7 +78,7 @@ The run time of this algorithm is O(n+ cnlogn + $cn^2$ + n) which is $O(n^2)$
                 for v = 1 to n:
                     if v != u and v in not_R:
                         if v in L[u]:
-                            if max(d[u], L[u][v][1]) < d[v]: \\TODO:Check if this logic follows?
+                            if max(d[u], L[u][v][1]) < d[v]: 
                                 d(v) =  max(d[u], L[u][v][1])
                                 p(v) = u
 
@@ -86,20 +86,21 @@ The run time of this algorithm is O(n+ cnlogn + $cn^2$ + n) which is $O(n^2)$
     \end{verbatim}
 
     The first for loop would have a runtime of c*n, where c is a constant. The while loop would take at most
-    n iterations, while the first for loop within the while loop would take m runtime, where m <= n. The second
+    n iterations, while the first for loop within the while loop would take m runtime, where $m <= n$. The second
     for loop in the while loop would take at most n iterations. Thus the worst case runtime of the modified
     algorithm is $O(c + cn + m + n^2)$ and thus $O(n^2)$.
 
     \item[b.] In Dijkstra’s original algorithm, d(v) is a sum of the weights. It assumes that when a new 
     a new node, u, is added to R, for all nodes, v, in  V - R whose R-path contain u, 
     $d(v) = min(d(u) + w_uv, d(v))$. This relies on non negative weights since it relies on the shortest path
-    to v being either the original path s-> v or the path  s->u + v. Negative weights would allow this 
+    to v being either the original path $s-> v$ or the path  $s->u$ + v. Negative weights would allow this 
     assumption to be false since a negative weight connected to v elsewhere could lessen the weight of another
     path, not mentioned previously, making it possible to be the shortest path to v.\\
 
     This assumption is not necessary since our modification takes the max weight of all the portages on the path.
     Thus, negative weights would not impact the outcome.\\
 \end{enumerate}
+\newpage
 \section*{Question 3} 
 \begin{enumerate}
     \item[a.] Consider the actor heights of $900, 30, 15$, and the costume lengths of $50, 10, 5$. The optimal solution is matching $900 : 50$, $30 : 10$, and $15 : 5$ for a cost of $850 + 20 + 10 = 880$. However, Bombazzino's algorithm will match $15 : 10$, $30 : 50$, and $900 : 5$ for a cost of $5 + 20 + 895 = 920$. Thus, Bombazzino's algorithm is not optimal.
@@ -112,11 +113,15 @@ The run time of this algorithm is O(n+ cnlogn + $cn^2$ + n) which is $O(n^2)$
     Say that $C_i \neq D_i$. Let $a_i$ be an actor of height $h_i$ in $S_g$, such that in $S_o$, $a_i$ has a costume $c_j$ that is not a member of the set of costumes $C_i$. Therefore, the length of $c_j$ is less than the length of any costume in $C_i$, and there must also exist an actor $a_j$ with height less than $h_i$ such that $a_j$ has been given some costume $c_i$ where $c_i$ is in $C_i$ in $S_o$.
     \newline \,
     \newline
-    Therefore, we have that the height of actor $a_i > a_j$, and the length of costume $c_i > c_j$. This is a contradiction, as then the optimal solution could be improved by swapping the costumes for $a_i$ and $a_j$ (in an optimal solution, there cannot be a pair of actors $a_i$ $a_j$ where $a_i$ is taller than $a_j$ and $a_i$ is assigned a costume that is shorter than $a_j$'s costume. Swapping the costumes for $a_i$ and $a_j$ will strictly improve the cost of the solution). We see that in the optimal solution $C_i$ must be equal to $D_i$ for all $i$, and therefore the cost is identical.
+    Therefore, we have that the height of actor $a_i > a_j$, and the length of costume $c_i > c_j$. This is a contradiction, as then the optimal solution could be improved by swapping the costumes for $a_i$ and $a_j$ 
+    (in an optimal solution, there cannot be a pair of actors $a_i$ $a_j$ where $a_i$ is taller than $a_j$ and $a_i$ is assigned a costume that is shorter than $a_j$'s costume. Swapping the costumes for $a_i$ and $a_j$ will strictly improve the cost of the solution).\\
+
+    Since we know that $ai > aj$ and $ci > cj$\\
+    $=> ai - cj > ai - ci$\\
+    $=> cost(ai$ $cj) > cost(ai$ $ci)$ therefore, it would be a suboptimal cost\\
+
+    We see that in the optimal solution $C_i$ must be equal to $D_i$ for all $i$, and therefore the cost is identical.
 
 \end{enumerate}
-
-\newpage
-\section*{Question 3}
 
 \end{document}
