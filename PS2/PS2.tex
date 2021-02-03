@@ -97,7 +97,7 @@ The run time of this algorithm is O(n+ cnlogn + $cn^2$ + n) which is $O(n^2)$
 \section*{Question 3} 
 \begin{enumerate}
     \item[a.] Consider the actor heights of $900, 30, 15$, and the costume lengths of $50, 10, 5$. The optimal solution is matching $900 : 50$, $30 : 10$, and $15 : 5$ for a cost of $850 + 20 + 10 = 880$. However, Bombazzino's algorithm will match $15 : 10$, $30 : 50$, and $900 : 5$ for a cost of $5 + 20 + 895 = 920$. Thus, Bombazzino's algorithm is not optimal.
-    \item[b.] We will show that the cost of $S_g = S_o$, therefore $S_g$ is optimal.
+    \item[b.] Let $S_g$ be the solution that our greedy algorithm returns, and let $S_o$ be the optimal solution. We will show that the cost of $S_g = S_o$, therefore $S_g$ is optimal.
     \newline \,
     \newline
     To start, sort $S_g$ and $S_o$ by increasing actor height. Let $h_1$ to $h_k$ be the distinct heights $h_1 > h_2 > ... > h_k$ of the actors. Starting at $i = 1$, consider the actors of height $h_i$, and let $C_i$ be the set of costumes assigned to the actors of height $h_i$ in solution $S_g$. Let $D_i$ be the set of costumes assigned to the actors of height $h_i$ in $S_o$. If $C_i = D_i$ than the cost of the assignment to the actors of $h_i$ in $S_g$ is the same as the cost of the assignment to the actors of height $h_i$ in $S_o$ and this holds for $h_1$ up to $h_i$.
