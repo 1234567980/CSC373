@@ -114,15 +114,7 @@ The run time of this algorithm is O(n+ cnlogn + $cn^2$ + n) which is $O(n^2)$
     \newline \,
     \newline
     Therefore, we have that the height of actor $a_i > a_j$, and the length of costume $c_i > c_j$. This is a contradiction, as then the optimal solution could be improved by swapping the costumes for $a_i$ and $a_j$ 
-    (in an optimal solution, there cannot be a pair of actors $a_i$ $a_j$ where $a_i$ is taller than $a_j$ and $a_i$ is assigned a costume that is shorter than $a_j$'s costume. 
-    
-    Since we know that $ai > aj$ and $ci > cj$\\
-    $=> ai - cj > ai - ci$\\
-    $=> cost(ai$ $cj) > cost(ai$ $ci)$\\
-    
-    Swapping the costumes for $a_i$ and $a_j$ will strictly improve the cost of the solution).\\
-
-    We see that in the optimal solution $C_i$ must be equal to $D_i$ for all $i$, and therefore the cost is identical.
+    (in an optimal solution, there cannot be a pair of actors $a_i$ $a_j$ where $a_i$ is taller than $a_j$ and $a_i$ is assigned a costume that is shorter than $a_j$'s costume. We know this since $ai > aj$ and $ci > cj$, which implies that $ai - cj > ai - ci$. This tells us that $cost(ai$ $cj) > cost(ai$ $ci)$, which must be suboptimal, as swapping the costumes for $a_i$ and $a_j$ will strictly improve the cost of the solution). Therefore, we see that in the optimal solution $C_i$ must be equal to $D_i$ for all $i$, and therefore the cost is identical.
 
 \end{enumerate}
 
