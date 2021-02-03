@@ -94,6 +94,21 @@ The run time of this algorithm is O(n+ cnlogn + $cn^2$ + n) which is $O(n^2)$
     This assumption is not necessary since our modification takes the max weight of all the portages on the path.
     Thus, negative weights would not impact the outcome.\\
 \end{enumerate}
+\section*{Question 3} 
+\begin{enumerate}
+    \item[a.] Consider the actor heights of $900, 30, 15$, and the costume lengths of $50, 10, 5$. The optimal solution is matching $900 : 50$, $30 : 10$, and $15 : 5$ for a cost of $850 + 20 + 10 = 880$. However, Bombazzino's algorithm will match $15 : 10$, $30 : 50$, and $900 : 5$ for a cost of $5 + 20 + 895 = 920$. Thus, Bombazzino's algorithm is not optimal.
+    \item[b.] We will show that the cost of $S_g = S_o$, therefore $S_g$ is optimal.
+    \newline \,
+    \newline
+    To start, sort $S_g$ and $S_o$ by increasing actor height. Let $h_1$ to $h_k$ be the distinct heights $h_1 > h_2 > ... > h_k$ of the actors. Starting at $i = 1$, consider the actors of height $h_i$, and let $C_i$ be the set of costumes assigned to the actors of height $h_i$ in solution $S_g$. Let $D_i$ be the set of costumes assigned to the actors of height $h_i$ in $S_o$. If $C_i = D_i$ than the cost of the assignment to the actors of $h_i$ in $S_g$ is the same as the cost of the assignment to the actors of height $h_i$ in $S_o$ and this holds for $h_1$ up to $h_i$.
+    \newline \,
+    \newline
+    Say that $C_i \neq D_i$. Let $a_i$ be an actor of height $h_i$ in $S_g$, such that in $S_o$, $a_i$ has a costume $c_j$ that is not a member of the set of costumes $C_i$. Therefore, the length of $c_j$ is less than the length of any costume in $C_i$, and there must also exist an actor $a_j$ with height less than $h_i$ such that $a_j$ has been given some costume $c_i$ where $c_i$ is in $C_i$ in $S_o$.
+    \newline \,
+    \newline
+    Therefore, we have that the height of actor $a_i > a_j$, and the length of costume $c_i > c_j$. This is a contradiction, as then the optimal solution could be improved by swapping the costumes for $a_i$ and $a_j$ (in an optimal solution, there cannot be a pair of actors $a_i$ $a_j$ where $a_i$ is taller than $a_j$ and $a_i$ is assigned a costume that is shorter than $a_j$'s costume. Swapping the costumes for $a_i$ and $a_j$ will strictly improve the cost of the solution). We see that in the optimal solution $C_i$ must be equal to $D_i$ for all $i$, and therefore the cost is identical.
+
+\end{enumerate}
 
 
 \end{document}
