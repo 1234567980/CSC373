@@ -21,7 +21,22 @@
 \begin{document}
 \maketitle
 \section*{Question 1}
-
+\begin{enumerate}
+    \item[a.] \begin{equation}
+            A(j,H)=\begin{cases}
+         0, & \text{if $j=0$}.\\
+        max_{0 \leq k \leq H}(A[j-1,H-k] + f_j(k)), & \text{otherwise}.
+        \end{cases}
+        \end{equation}
+  
+    To maximize the average grade over n courses we will do max $\frac{(f_1(h1) + f_2(h2) ... + f_n(hn))}{n}$ which is equivalent to $\sum_{i = 1}^ {n} f_i(hi)$
+  
+    \begin{verbatim}
+        BottomUp(n, H):
+             for i 1 to n
+    \end{verbatim}
+\end{enumerate}
+    
 \section*{Question 2}
 
 \section*{Question 3} 
