@@ -22,19 +22,53 @@
 \maketitle
 \section*{Question 1}
 \begin{enumerate}
-    \item[a.] \begin{equation}
-            A(j,H)=\begin{cases}
+    \item[a.] Let A(i, h) = maximum grade one can receive on i projects if they spend h number of hours on it. The Bellman equation is as follows. TODO:correctness
+    
+        \begin{equation}
+            A(i,h)=\begin{cases}
          0, & \text{if $j=0$}.\\
-        max_{0 \leq k \leq H}(A[j-1,H-k] + f_j(k)), & \text{otherwise}.
+        max_{0 \leq k \leq H}(A[i-1,H-k] + f_i(k)), & \text{otherwise}.
         \end{cases}
         \end{equation}
   
-    To maximize the average grade over n courses we will do max $\frac{(f_1(h1) + f_2(h2) ... + f_n(hn))}{n}$ which is equivalent to $\sum_{i = 1}^ {n} f_i(hi)$
+    To maximize the average grade over n courses we will do max $\frac{(f_1(h1) + f_2(h2) ... + f_n(hn))}{n}$ which is equivalent to maximizing $\sum_{i = 1}^ {n} f_i(hi)$
   
     \begin{verbatim}
         BottomUp(n, H):
-             for i 1 to n
+            for h = 0 to H:
+                A(0, h) = 0
+            
+            for i = 1 to n:
+                max = 0
+                for j = 0 to H:
+                    for k = 0 to j
+                        g = A(i-1, H-k) + f_i(k)
+                        if (g > max):
+                            max = g
+                    A(i, j) = max
+            return A(n, H) /n
     \end{verbatim}
+    
+    \item[b.] \begin{verbatim}
+        Augmented(n, H):
+            for h = 0 to H:
+                A(0, h) = 0
+            
+            for i = 1 to n:
+                max = 0
+                for j = 0 to H:
+                    for k = 0 to j
+                        g = A(i-1, H-k) + f_i(k)
+                        if (g > max):
+                            max = g
+                            hours(i) = k
+                    A(i, j) = max
+            return hours
+                    
+        
+    \end{verbatim}
+    
+    
 \end{enumerate}
     
 \section*{Question 2}
