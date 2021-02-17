@@ -152,6 +152,35 @@
               What remains is x = el, y = en, z = len, and from there, the greedy algorithm cannot continue further
               and must return false.
 
+    \item[b.] The subproblem of this question is defined as IsInterleaving(i, j): True iff $z[1] ... z[i+j]$ is an interleaving of $x[1] ... x[i]$ and $y[1] ... y[j]$. The Bellman equation is as follows:
+    
+    \begin{equation*}
+        \text{IsInterleaving}(i,j)=\begin{cases}
+    \text{True}, & \text{if $i = 0$ and $j = 1$} \\ & \text{and $z[1] = y[1]$} \\ & \text{OR} \\ & \text{if $i = 1$ and $j = 0$} \\ & \text{and $z[1] = x[1]$}.\\ \\
+    z[i+j] == x[i] \newline \text{ and IsInterleaving}(i-1, j) \\ \text{OR} & \text{otherwise}. \\ z[i+j] == y[j] \text{ and IsInterleaving}(i, j-1)
+    \end{cases}
+    \end{equation*}
+    
+    Let the length of $x = n$ and the length of $y = m$. Psuedocode: 
+    \begin{verbatim}
+    IsInterleaving(n, m)
+        In is 2dArray [i, j] of Bools.
+            for i = 1 to n
+            and for j = 1 to m
+        
+        Initialize In to False at every index
+        
+        In[0, 1] = z[1] == y[1]
+        In[1, 0] = z[1] == x[1]
+        
+        for i = 1 to n
+            for j = 1 to m
+                In[i, j] = (z[i+j] == x[i] and In[i-1, j]) or \
+                    (z[i+j] == y[j] and In[i, j-1])
+        return In[n, m]
+            
+    \end{verbatim}
+    The running time of this program is $\mathcal{O}(nm)$, as initializing the array takes $nm$ time, and the second loop also takes $nm$ time.
 
 \end{enumerate}
 
