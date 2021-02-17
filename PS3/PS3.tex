@@ -73,7 +73,12 @@
     
 \section*{Question 2}
 \begin{enumerate}
-    \item[a.] The subproblem of this question is defined as:
+    \item[a.] The subproblem is breaking down the question into smaller sections, and finding the most 
+    optimal way of connecting those smaller sections. Then by finding the most optimal way to connect
+    those sections. This works because we are also trying out every way in which these sections can be divided
+    and thus are trying every possible way of connecting the carts. 
+    
+    The subproblem of this question is defined as:
     cost(i,j): The cost of connecting train carts i to j. The Bellman equation is as follows:
 
     \begin{equation}
@@ -163,7 +168,7 @@
     
     Let the length of $x = n$ and the length of $y = m$. Psuedocode: 
     \begin{verbatim}
-    IsInterleaving(n, m)
+    IsInterleaving(n, m, x, y, z)
         In is 2dArray [i, j] of Bools.
             for i = 1 to n
             and for j = 1 to m
