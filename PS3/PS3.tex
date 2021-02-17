@@ -88,7 +88,7 @@
     cost(i,j): The cost of connecting train carts i to j. The Bellman equation is as follows:
 
     \begin{equation}
-        Cost(i,j)=\begin{cases}
+        cost(i,j)=\begin{cases}
     0, & \text{if $i=j$}.\\
     min_{i \leq k < j}(cost(i,k) + cost(k+1, j) + \\min((w_{i} + ... + w_{k})^{1/2},(w_{k+1} + ... + w_{j})^{1/2})), & \text{if $i < j$}.
     \end{cases}
@@ -173,7 +173,7 @@
     \end{cases}
     \end{equation*}
     
-    Let the length of $x = n$ and the length of $y = m$. Psuedocode: 
+    Let the length of $x = n$ and the length of $y = m$. Pseudocode: 
     \begin{verbatim}
 
     IsInterleaving(x, y, z)
