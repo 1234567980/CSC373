@@ -22,7 +22,10 @@
 \maketitle
 \section*{Question 1}
 \begin{enumerate}
-    \item[a.] Let A(i, h) = maximum grade one can receive on i projects if they spend h number of hours on it. The Bellman equation is as follows. TODO:correctness
+    \item[a.] Let A(i, h) = maximum grade one can receive on i projects if they spend h number of 
+    hours on it. The Bellman equation is as follows. For each value of k between 0 and h we calculate 
+    the max value of k that maximizes $f_i(k)$ and A[i-1, H-k] which is the max grade one can receive 
+    with the remaining time and projects.
     
         \begin{equation}
             A(i,h)=\begin{cases}
@@ -37,6 +40,8 @@
         BottomUp(n, H):
             for h = 0 to H:
                 A(0, h) = 0
+            for i = 0 to n:
+                A(i, 0) = f_i(0)
             
             for i = 1 to n:
                 max = 0
@@ -53,6 +58,8 @@
         Augmented(n, H):
             for h = 0 to H:
                 A(0, h) = 0
+            for i = 0 to n:
+                A(i, 0) = f_i(0)
             
             for i = 1 to n:
                 max = 0
@@ -61,14 +68,12 @@
                         g = A(i-1, H-k) + f_i(k)
                         if (g > max):
                             max = g
-                            hours(i) = k
+                            hours[i] = k
                     A(i, j) = max
-            return hours
+            return hours and A(n, H) /n
                     
         
     \end{verbatim}
-    
-    
 \end{enumerate}
     
 \section*{Question 2}
