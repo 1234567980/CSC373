@@ -72,6 +72,75 @@
 \end{enumerate}
     
 \section*{Question 2}
+\begin{enumerate}
+    \item[a.] The subproblem of this question is defined as:
+    cost(i,j): The cost of connecting train carts i to j. Th Bellman equation is as follows:
+
+    \begin{equation}
+        Cost(i,j)=\begin{cases}
+    0, & \text{if $i=j$}.\\
+    min_{i \leq k < j}(cost(i,k) + cost(k+1, j) + \\min((w_{i} + ... + w_{k})^{1/2},(w_{k+1} + ... + w_{j})^{1/2})), & \text{if $i < j$}.
+    \end{cases}
+    \end{equation}
+
+    Pseudocode:
+    \begin{verbatim}
+        BottomUp(n, W):
+            for i = 1 to n:
+                cost(i, i) = 0
+            
+            for l = 1 to n-1:
+                for i = 1 to n-1:
+                    j = i + l
+                    if j <= n:
+                        min_found = inf
+                        for k = i to j-1:
+                            found = min(cost(i,k) + cost(k+1,j) + 
+                            min(w[i:k]^1/2, w[k+1:j]^1/2))
+
+                            if found < min_found:
+                                min_found = found
+
+                    cost(i,j) = min_found
+            return cost(1,n)
+    \end{verbatim}
+
+    Time Complexity: O($n^3$) since we have 3 nested for loops 
+
+    \item[b. ] To augment the algorithm so that it also outputs an optimal order
+    of train car connections, we can add to the memory part of the algorithmn by
+    adding another array that stores the order. The order is an array that stores
+    pairs in the order in which the train carts are connected. 
+    Ex: [[1,2],[3,4],[5,6],[2,3],[4,5]] 
+    
+    Pseudocode:
+    \begin{verbatim}
+        BottomUp(n, W):
+            for i = 1 to n:
+                cost(i, i) = 0
+                order(i,i) = []
+            
+            for l = 1 to n-1:
+                for i = 1 to n-1:
+                    j = i + l
+                    if j <= n:
+                        min_found = inf
+                        for k = i to j-1:
+                            found = min(cost(i,k) + cost(k+1,j) + 
+                            min(w[i:k]^1/2, w[k+1:j]^1/2))
+
+                            found_order = order(i,k) + order(k+1,j) + [[k,k+1]]
+
+                            if found < min_found:
+                                min_found = found
+                                min_order = found_order
+
+                    cost(i,j) = min_found
+                    order(i,j) = min_order
+            return cost(1,n)
+    \end{verbatim}
+
+ \end{enumerate}
 
 \section*{Question 3} 
 \begin{enumerate}
