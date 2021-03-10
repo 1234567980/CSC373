@@ -22,9 +22,16 @@
 \begin{document}
 \maketitle
 \section*{Question 1}
-\begin{enumerate}
-    \item[a.] 
-\end{enumerate}
+Given $F = (V, E)$, we define $F'$ with exactly the same edges and vertices $(V, E)$, and for every edge $e \in E$ where the capacity of $e \in F$ is $cap(e)$ we let $e$'s capacity in $F' = cap(e) * (|E| + 1) + 1$.  We observe that $(S, T)$ is an $s$-$t$ cut of $F$ if and only if it is also a $s$-$t$ cut of $F'$, because $F$ and $F'$ have exactly the same edges and vertices. 
+\newline \,
+\newline Claim: If $(S, T)$ is a non minimal cut of $F$, then $(S, T)$ is a non minimal cut of $F'$. \newline \,
+\newline Let $(S', T')$ be a minimal cut of $F$ with $cap(S', T') = K$ in $F$. For any non minimal cut $(S, T)$, we must have that $cap(S, T) \geq K + 1$ (since all the weights are integral). $cap(S', T') = K * (|E| + 1) + k'$ in $F'$, where $k'$ is the number of crossings between $S'$ and $T'$. On the other hand, we must have that $cap(S, T) \geq (K + 1) * (|E| + 1) + k$, where k is the number of crossings between $S$ and $T$ . We know that both $k$ and $k'$ are in the range $1$ to $|E|$. We can see that $cap(S', T') < cap(S, T)$ in $F'$. Therefore $(S, T)$ is not a minimal cut of $F'$.
+\newline \, 
+\newline
+Now we can observe that any minimal cut of $F'$ must be a minimal cut of $F$ by contraposition. Consider two minimal cuts of $F$, $(S_1, T_1)$ and $(S_2, T_2)$. The capacity of these cuts is equal to $K * (|E| + 1) + k_1$ and $K * (|E| + 1) + k_2$ in $F'$ where $k_1$ and $k_2$ are the number of crossings between each cut. Therefore, the minimum cut of $F'$ must be a minimum cut of $F$ that has a minimal number of crossings.
+\newline \, \newline
+So, to compute a minimum cut of $F$ that has a minimum number of crossings, one constructs $F'$ and finds a minimum cut in $F'$ in polynomial time. This cut is the required answer.
+
 
 \newpage
 
