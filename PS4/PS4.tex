@@ -31,7 +31,7 @@ Given $F = (V, E)$, we define $F'$ with exactly the same edges and vertices $(V,
 Now we can observe that any minimal cut of $F'$ must be a minimal cut of $F$ by contraposition. Consider two minimal cuts of $F$, $(S_1, T_1)$ and $(S_2, T_2)$. The capacity of these cuts is equal to $K * (|E| + 1) + k_1$ and $K * (|E| + 1) + k_2$ in $F'$ where $k_1$ and $k_2$ are the number of crossings between each cut. Therefore, the minimum cut of $F'$ must be a minimum cut of $F$ that has a minimal number of crossings.
 \newline \, \newline
 So, to compute a minimum cut of $F$ that has a minimum number of crossings, one constructs $F'$ and finds a minimum cut in $F'$ in polynomial time. This cut is the required answer.
-
+\newline This question was written and read by  Luke, Naslin, and Zhuoqian.
 
 \newpage
 
@@ -52,14 +52,14 @@ So, to compute a minimum cut of $F$ that has a minimum number of crossings, one 
     
         \includegraphics[width=6cm]{Graphs/2C.png}
 
-    \item[e. ] Find the maximum flow f of (G, s, t, c), and its corresponding resodial
+    \item[e. ] Find the maximum flow f of (G, s, t, c), and its corresponding residial
                graph $G_{f}$.
                
                To find a bottleneck edge, we want to find a path from s to t where all edges still
                have space left except for on edge. 
                
 
-               Algorithmn: Starting from edge s, explore other nodes connected to this node with
+               Algorithm: Starting from edge s, explore other nodes connected to this node with
                an edge from the node. (Ex: Explore node u if there is an edge (s,u)).
 
                Choose one node to further explore at a time, and keep track of unexplored nodes
@@ -70,7 +70,7 @@ So, to compute a minimum cut of $F$ that has a minimum number of crossings, one 
 
                If this number exceeds 2, then this is an invalid path and return 
                to the most previous unexplored node. If the node t is reached, and the number
-               of these kinds of edges is exactly one, then that edge is a bottleneck edge.
+               of these kind of edges is exactly one, then that edge is a bottleneck edge.
 
                If we are on a path with a previously found bottleneck edge, we do not need to 
                continue exploring. Continue until all possible paths are explored to get all possible bottleneck edges.
@@ -121,6 +121,8 @@ So, to compute a minimum cut of $F$ that has a minimum number of crossings, one 
                the runtime of any possible path from s to t with max C iterations. Checking $G_{f}$ is constant.
 
                Thus, O((m+n)C).
+
+               This question was written and read by  Luke, Naslin, and Zhuoqian.
 \end{enumerate}
 \newpage
 \section*{Question 3}
@@ -138,10 +140,8 @@ So, to compute a minimum cut of $F$ that has a minimum number of crossings, one 
     Step 2: Constructing the flow network (with all weights = 1) which is $O(n + m)$\\
     Step 3: Finding the max flow of $G'$ using FF which is O(m'* n') = $2(n-2) * m+(n-2)$ which is $O(n^2 + nm)$\\
     Step 4: Path decomposition which is $O(n + mn)$\\
-    
-    Total Runtime $O(n^2 + mn)$
-
-
+    \newline Total Runtime $O(n^2 + mn)$
+    \newline This question was written and read by  Luke, Naslin, and Zhuoqian.
 
 
 
