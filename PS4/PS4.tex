@@ -122,8 +122,23 @@ So, to compute a minimum cut of $F$ that has a minimum number of crossings, one 
 
                Thus, O((m+n)C).
 \end{enumerate}
-
 \newpage
+\section*{Question 3}
+    We will reduce the regular edge-disjoint problem done in lecture. First create a new graph called $G'$ that is created as follows: For each node u of G (excluding s and t), we will create 2 new nodes (u1) and (u2) in $G'$. Then in $G'$ put a directed edge from (u1) to (u2) with weight 1. Then for each each (u,v) in G, we put an edge from (u2) to (v1) with weight of 1. All edges that start with s becomes (s, v1) and ones that end with t become (v2, t)
+    \\\\
+    Example:
+    \\\\
+    Now if we find a max flow of $G'$ using Ford Fulkerson we get the max size set of node-disjoint s-t paths. 
+    This algorithm works because each vertex in the original graph becomes an edge in the new graph so running the algorithm to find the max number of edge-disjoint paths will give us the our answer.
+    \\
+    Time Complexity: Our new graph $G'$ will have 2*(n-2) vertices and m+(n-2) edges. \\ Step 1: Creating this graph will be $O(2*(n-2) + m+(n-2)$ which is $O(n + m)$ \\
+    Step 2: Constructing the flow network (with all weights = 1) which is $O(n + m)$\\
+    Step 3: Finding the max flow of $G'$ using FF which is O(m'* n') = $2(n-2) * m+(n-2)$ which is $O(n^2 + nm)$\\
+    Step 4: Path decomposition which is $O(n + mn)$\\
+    
+    Total Runtime $O(n^2 + mn)$
+
+
 
 
 
